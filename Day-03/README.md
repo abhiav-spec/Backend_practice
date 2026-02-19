@@ -171,6 +171,4 @@ const notemodel = mongoose.model('Note', noteSchema);
 
 ---
 
-If you want, I can also:
-- move the DB URI into a `.env` and update the code to use `dotenv`, or
-- add a `dev` script and install `nodemon` for development.
+
