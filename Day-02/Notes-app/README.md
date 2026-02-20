@@ -244,3 +244,7 @@ Good practice tips:
 Day 02 connects a UI to an Express API and reinforces CRUD + REST concepts. The repository includes runnable code and Postman guidance so you can re-test and learn iteratively.
 
 Happy coding! 🎉
+
+
+s4zwZPzsVH8OQOAh
+mongodb+srv://yt-backend:s4zwZPzsVH8OQOAh@cluster0.44glwqd.mongodb.net/

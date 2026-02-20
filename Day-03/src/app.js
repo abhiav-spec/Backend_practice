@@ -2,6 +2,7 @@ const express = require('express');
 const notemodel = require('./db/models/note.model');
 
 
+
 const app = express();
 
 app.use(express.json());
