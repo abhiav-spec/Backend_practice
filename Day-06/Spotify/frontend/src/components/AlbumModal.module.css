@@ -1,0 +1,138 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(20, 15, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.closeBtn:hover {
+    color: #f1f5f9;
+}
+
+.header {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(180deg, rgba(168, 85, 247, 0.2), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.art {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.info {
+    flex: 1;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+}
+
+.artist {
+    color: #a855f7;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.stats {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.songList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.empty {
+    text-align: center;
+    color: #64748b;
+    padding: 40px;
+}
+
+.songItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.songItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.songItem.active {
+    background: rgba(168, 85, 247, 0.1);
+    color: #a855f7;
+}
+
+.number {
+    width: 24px;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.songTitle {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.playIcon {
+    font-size: 1.1rem;
+    opacity: 0.6;
+}
+
+.songItem:hover .playIcon {
+    opacity: 1;
+}

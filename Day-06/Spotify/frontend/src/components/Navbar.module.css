@@ -1,0 +1,126 @@
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(10, 8, 26, 0.8);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #f1f5f9;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: white;
+}
+
+.role {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+}
+
+.primaryBtn {
+    padding: 9px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    color: white;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.primaryBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(168, 85, 247, 0.55);
+}
+
+.ghostBtn {
+    padding: 9px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f1f5f9;
+    transition: background 0.2s;
+}
+
+.ghostBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dangerBtn {
+    padding: 9px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(248, 113, 113, 0.12);
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    color: #f87171;
+    transition: background 0.2s;
+}
+
+.dangerBtn:hover {
+    background: rgba(248, 113, 113, 0.22);
+}
+
+@media (max-width: 600px) {
+    .nav {
+        padding: 12px 16px;
+    }
+
+    .chip span:first-of-type {
+        display: none;
+    }
+}

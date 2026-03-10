@@ -1,0 +1,148 @@
+.bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 32px;
+    background: rgba(8, 6, 22, 0.92);
+    backdrop-filter: blur(28px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 200px;
+}
+
+.art {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.meta {
+    overflow: hidden;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #f1f5f9;
+}
+
+.artist {
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 0 0 auto;
+}
+
+.ctrl {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.ctrl:hover {
+    color: #f1f5f9;
+    transform: scale(1.1);
+}
+
+.playBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.playBtn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 22px rgba(168, 85, 247, 0.6);
+}
+
+.progress {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time {
+    font-size: 0.75rem;
+    color: #64748b;
+    min-width: 36px;
+}
+
+.bar2 {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    transition: width 0.1s linear;
+}
+
+@media (max-width: 640px) {
+    .bar {
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .info {
+        min-width: 120px;
+    }
+
+    .progress {
+        display: none;
+    }
+}

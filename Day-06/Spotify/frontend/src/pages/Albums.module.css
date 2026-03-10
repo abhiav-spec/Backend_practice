@@ -1,0 +1,146 @@
+.heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f1f5f9;
+}
+
+.bar {
+    display: inline-block;
+    width: 4px;
+    height: 22px;
+    border-radius: 4px;
+    background: linear-gradient(#a855f7, #ec4899);
+}
+
+.searchBar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.input {
+    flex: 1;
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: #f1f5f9;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+    color: #64748b;
+}
+
+.input:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 13px 22px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+}
+
+.searchBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(168, 85, 247, 0.55);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 22px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateX(4px);
+}
+
+.art {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.info {
+    flex: 1;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #f1f5f9;
+    margin-bottom: 3px;
+}
+
+.meta {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #a855f7;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 50px auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64748b;
+}
+
+.emptyIcon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
