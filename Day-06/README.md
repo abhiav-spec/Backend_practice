@@ -24,15 +24,200 @@ This project is a simple fullstack app named "Spotify" (Soundwave). It includes 
 
 ## Concepts Covered
 
-- Node.js + Express (API routes, middleware)
-- MongoDB via Mongoose (schemas, models)
-- Authentication (bcrypt password hashing, JWT)
-- File uploads (multer or external storage service)
-- Image/file hosting with ImageKit (used in backend deps)
-- React + Vite (frontend dev server, components)
-- Axios for client-server communication
-- Environment variable management (`.env`)
-- Basic security and git hygiene for secrets
+Below are short, practical explanations and small examples for the main concepts used in this project. These are intentionally concise so you can quickly revise and copy examples into the codebase.
+
+### Node.js + Express (API routes, middleware)
+
+Express is used to build HTTP APIs. Define routes and attach middleware to handle auth, parsing, and errors.
+
+Example (basic server with middleware and a route):
+
+```js
+import express from 'express';
+const app = express();
+app.use(express.json()); // body parsing middleware
+
+// simple middleware
+function logger(req, res, next) {
+  console.log(req.method, req.url);
+  next();
+}
+
+app.use(logger);
+
+app.get('/api/ping', (req, res) => res.json({ ok: true }));
+
+app.listen(5000);
+```
+
+### MongoDB via Mongoose (schemas, models)
+
+Mongoose provides schemas and models to interact with MongoDB.
+
+Example (schema + model + usage):
+
+```js
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  email: { type: String, unique: true },
+  password: String,
+});
+
+const User = mongoose.model('User', userSchema);
+
+// usage
+const u = await User.create({ username: 'amy', email: 'a@x.com', password: 'hashed' });
+```
+
+### Authentication (bcrypt password hashing, JWT)
+
+Use `bcrypt` to hash passwords and `jsonwebtoken` to sign tokens.
+
+Example (hashing, saving, signing a JWT):
+
+```js
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const hashed = await bcrypt.hash(plainPassword, 10);
+// save `hashed` to DB
+
+// on login
+const ok = await bcrypt.compare(plainPassword, user.password);
+if (ok) {
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  return res.json({ token });
+}
+```
+
+Protect routes with middleware that verifies JWT:
+
+```js
+function auth(req, res, next) {
+  const authHeader = req.headers.authorization?.split(' ')[1];
+  if (!authHeader) return res.status(401).send('Unauthorized');
+  try {
+    req.user = jwt.verify(authHeader, process.env.JWT_SECRET);
+    next();
+  } catch { return res.status(401).send('Invalid token'); }
+}
+```
+
+### File uploads (multer or external storage service)
+
+`multer` handles multipart form uploads locally; for production, upload to cloud storage.
+
+Example (multer single file):
+
+```js
+import multer from 'multer';
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  // req.file contains uploaded file info
+  res.json({ path: req.file.path });
+});
+```
+
+### Image/file hosting with ImageKit (used in backend deps)
+
+ImageKit provides fast CDN-hosted uploads. Use `@imagekit/nodejs` to upload from the backend.
+
+Example (uploading a local file buffer):
+
+```js
+import ImageKit from 'imagekit';
+const imagekit = new ImageKit({
+  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+});
+
+const res = await imagekit.upload({ file: fs.readFileSync('./file.mp3'), fileName: 'song.mp3' });
+// res.url contains hosted file URL
+```
+
+### React + Vite (frontend dev server, components)
+
+Vite provides a fast dev server for React apps. Components are small reusable UI units.
+
+Example (simple React component):
+
+```jsx
+import React from 'react';
+
+export default function Hello({ name }) {
+  return <div>Hello, {name}!</div>;
+}
+```
+
+Start dev server:
+
+```bash
+cd Day-06/Spotify/frontend
+npm run dev
+```
+
+### Axios for client-server communication
+
+Axios makes HTTP requests from the frontend.
+
+Example (login request and storing token):
+
+```js
+import axios from 'axios';
+
+const resp = await axios.post('/api/auth/login', { email, password });
+localStorage.setItem('token', resp.data.token);
+
+// set header for later requests
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+```
+
+### Environment variable management (`.env`)
+
+Keep secrets and environment configuration in `.env` (server-side). Load them with `dotenv`.
+
+Example `.env`:
+
+```env
+PORT=5000
+MONGODB_URI=...
+JWT_SECRET=supersecret
+```
+
+Usage in Node.js:
+
+```js
+import dotenv from 'dotenv';
+dotenv.config();
+console.log(process.env.PORT);
+```
+
+### Basic security and git hygiene for secrets
+
+- Never commit actual secret files (e.g., `.env`) to the repository.
+- Add secret files to `.gitignore`.
+- If a secret was committed and pushed, rotate it immediately and remove the file from the index:
+
+```bash
+git rm --cached path/to/.env
+git commit -m "chore(secrets): remove .env"
+git push
+```
+
+- To fully remove secrets from history use BFG or `git filter-repo` (this rewrites history and requires force-push). Example BFG command:
+
+```bash
+java -jar bfg.jar --delete-files .env
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+git push --force
+```
+
+Keep the remaining README sections as-is.
 
 ## Folder Structure
 
