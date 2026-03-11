@@ -84,55 +84,6 @@ import jwt from 'jsonwebtoken';
 const hashed = await bcrypt.hash(plainPassword, 10);
 // save `hashed` to DB
 
-// on login
-const ok = await bcrypt.compare(plainPassword, user.password);
-if (ok) {
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-  return res.json({ token });
-}
-```
-
-Protect routes with middleware that verifies JWT:
-
-```js
-function auth(req, res, next) {
-  const authHeader = req.headers.authorization?.split(' ')[1];
-  if (!authHeader) return res.status(401).send('Unauthorized');
-  try {
-    req.user = jwt.verify(authHeader, process.env.JWT_SECRET);
-    next();
-  } catch { return res.status(401).send('Invalid token'); }
-}
-```
-
-### File uploads (multer or external storage service)
-
-`multer` handles multipart form uploads locally; for production, upload to cloud storage.
-
-Example (multer single file):
-
-```js
-import multer from 'multer';
-const upload = multer({ dest: 'uploads/' });
-
-app.post('/api/upload', upload.single('file'), (req, res) => {
-  // req.file contains uploaded file info
-  res.json({ path: req.file.path });
-});
-```
-
-### Image/file hosting with ImageKit (used in backend deps)
-
-ImageKit provides fast CDN-hosted uploads. Use `@imagekit/nodejs` to upload from the backend.
-
-Example (uploading a local file buffer):
-
-```js
-import ImageKit from 'imagekit';
-const imagekit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
 });
 
 const res = await imagekit.upload({ file: fs.readFileSync('./file.mp3'), fileName: 'song.mp3' });
