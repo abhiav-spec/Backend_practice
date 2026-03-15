@@ -688,9 +688,10 @@ Chunk3
 
 ---
 
-# CORS (Cross-Origin Resource Sharing) – Complete Explanation
+# CORS 
 
 ## What is CORS?
+Cross-Origin Resource Sharing) – Complete Explanation
 
 **CORS** stands for **Cross-Origin Resource Sharing**.
 
